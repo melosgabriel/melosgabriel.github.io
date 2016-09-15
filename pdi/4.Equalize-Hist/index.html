@@ -503,6 +503,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_trabalhando_com_as_funções_do_opencv">3.3. Trabalhando com As Funções do OpenCV</a></li>
 </ul>
 </li>
+<li><a href="#_saída_do_programa">4. Saída do Programa</a></li>
 </ul>
 </div>
 </div>
@@ -562,7 +563,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_o_código">3. O Código</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>O código é mostrado abaixo, e será explicado logo em seguida.</p>
+<p>O <a href=":equalize.cpp">código</a> é mostrado abaixo, e será explicado logo em seguida.</p>
 </div>
 <div class="listingblock">
 <div class="title">equalize.cpp</div>
@@ -580,13 +581,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
   <span class="tok-n">vector</span><span class="tok-o">&lt;</span><span class="tok-n">Mat</span><span class="tok-o">&gt;</span> <span class="tok-n">channels</span><span class="tok-p">;</span>
   <span class="tok-n">cout</span><span class="tok-o">&lt;&lt;</span><span class="tok-s">&quot;Voce quer uma imagem colorida?</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
   <span class="tok-n">cin</span><span class="tok-o">&gt;&gt;</span><span class="tok-n">color</span><span class="tok-p">;</span>
+  <span class="tok-kt">char</span> <span class="tok-n">key</span><span class="tok-p">;</span>
 
   <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">argc</span><span class="tok-o">&gt;</span><span class="tok-mi">1</span><span class="tok-p">){</span>
-    <span class="tok-n">Mat</span> <span class="tok-n">im</span> <span class="tok-o">=</span> <span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-n">argv</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">],</span><span class="tok-n">CV_LOAD_IMAGE_COLOR</span><span class="tok-p">);</span>
-    <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-o">!</span><span class="tok-n">im</span><span class="tok-p">.</span><span class="tok-n">data</span><span class="tok-p">){</span>
+    <span class="tok-n">image</span> <span class="tok-o">=</span> <span class="tok-n">imread</span><span class="tok-p">(</span><span class="tok-n">argv</span><span class="tok-p">[</span><span class="tok-mi">1</span><span class="tok-p">],</span><span class="tok-n">CV_LOAD_IMAGE_COLOR</span><span class="tok-p">);</span>
+    <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-o">!</span><span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">data</span><span class="tok-p">){</span>
       <span class="tok-n">cout</span><span class="tok-o">&lt;&lt;</span><span class="tok-s">&quot;Nao abriu a imagem!</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
       <span class="tok-k">return</span> <span class="tok-o">-</span><span class="tok-mi">1</span><span class="tok-p">;</span>
     <span class="tok-p">}</span>
+
     <span class="tok-n">width</span>  <span class="tok-o">=</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">cols</span><span class="tok-p">;</span>
     <span class="tok-n">height</span> <span class="tok-o">=</span> <span class="tok-n">image</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">;</span>
 
@@ -594,20 +597,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
     <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;altura  = &quot;</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">height</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">endl</span><span class="tok-p">;</span>
 
     <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">color</span><span class="tok-p">){</span>
-      <span class="tok-n">cvtColor</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-n">out</span><span class="tok-p">,</span><span class="tok-n">CV_BGR2YCrCb</span><span class="tok-p">);</span>
+      <span class="tok-n">cvtColor</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-n">out</span><span class="tok-p">,</span><span class="tok-n">CV_RGB2HSV</span><span class="tok-p">);</span>
       <span class="tok-n">split</span><span class="tok-p">(</span><span class="tok-n">out</span><span class="tok-p">,</span><span class="tok-n">channels</span><span class="tok-p">);</span>
-      <span class="tok-n">equalizeHist</span><span class="tok-p">(</span><span class="tok-n">channels</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">],</span> <span class="tok-n">channels</span><span class="tok-p">[</span><span class="tok-mi">0</span><span class="tok-p">]);</span>
+      <span class="tok-n">equalizeHist</span><span class="tok-p">(</span><span class="tok-n">channels</span><span class="tok-p">[</span><span class="tok-mi">2</span><span class="tok-p">],</span> <span class="tok-n">channels</span><span class="tok-p">[</span><span class="tok-mi">2</span><span class="tok-p">]);</span>
       <span class="tok-n">merge</span><span class="tok-p">(</span><span class="tok-n">channels</span><span class="tok-p">,</span><span class="tok-n">out</span><span class="tok-p">);</span>
-      <span class="tok-n">cvtColor</span><span class="tok-p">(</span><span class="tok-n">out</span><span class="tok-p">,</span><span class="tok-n">out</span><span class="tok-p">,</span><span class="tok-n">CV_YCrCb2BGR</span><span class="tok-p">);</span>
+      <span class="tok-n">cvtColor</span><span class="tok-p">(</span><span class="tok-n">out</span><span class="tok-p">,</span><span class="tok-n">out</span><span class="tok-p">,</span><span class="tok-n">CV_HSV2RGB</span><span class="tok-p">);</span>
     <span class="tok-p">}</span>
     <span class="tok-k">else</span><span class="tok-p">{</span>
-      <span class="tok-n">cvtColor</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-n">CV_BGR2GRAY</span><span class="tok-p">);</span>
+      <span class="tok-n">cvtColor</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-n">CV_RGB2GRAY</span><span class="tok-p">);</span>
       <span class="tok-n">equalizeHist</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">out</span> <span class="tok-p">);</span>
     <span class="tok-p">}</span>
     <span class="tok-n">namedWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;source&quot;</span><span class="tok-p">);</span>
     <span class="tok-n">namedWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;output&quot;</span><span class="tok-p">);</span>
     <span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;souce&quot;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">);</span>
     <span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;output&quot;</span><span class="tok-p">,</span><span class="tok-n">out</span><span class="tok-p">);</span>
+    <span class="tok-n">imwrite</span><span class="tok-p">(</span><span class="tok-s">&quot;output.png&quot;</span><span class="tok-p">,</span><span class="tok-n">out</span><span class="tok-p">);</span>
+    <span class="tok-n">waitKey</span><span class="tok-p">();</span>
 
   <span class="tok-p">}</span>
   <span class="tok-k">else</span><span class="tok-p">{</span>
@@ -625,6 +630,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
     <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;largura = &quot;</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">width</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">endl</span><span class="tok-p">;</span>
     <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;altura  = &quot;</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">height</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-n">endl</span><span class="tok-p">;</span>
 
+    <span class="tok-n">cout</span> <span class="tok-o">&lt;&lt;</span> <span class="tok-s">&quot;Pressione p para printar e ESC para sair!</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">;</span>
     <span class="tok-k">while</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">){</span>
       <span class="tok-n">cap</span> <span class="tok-o">&gt;&gt;</span> <span class="tok-n">image</span><span class="tok-p">;</span>
       <span class="tok-n">flip</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-n">image</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">);</span>
@@ -644,7 +650,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
       <span class="tok-n">namedWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;output&quot;</span><span class="tok-p">);</span>
       <span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;souce&quot;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">);</span>
       <span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;output&quot;</span><span class="tok-p">,</span><span class="tok-n">out</span><span class="tok-p">);</span>
-      <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">waitKey</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">)</span> <span class="tok-o">&gt;=</span> <span class="tok-mi">0</span><span class="tok-p">)</span> <span class="tok-k">break</span><span class="tok-p">;</span>
+      <span class="tok-n">key</span> <span class="tok-o">=</span> <span class="tok-n">waitKey</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">);</span>
+      <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">key</span><span class="tok-o">==</span><span class="tok-mi">27</span><span class="tok-p">)</span> <span class="tok-k">break</span><span class="tok-p">;</span>
+      <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">key</span><span class="tok-o">==</span><span class="tok-mi">112</span><span class="tok-p">){</span>
+        <span class="tok-n">imwrite</span><span class="tok-p">(</span><span class="tok-s">&quot;saida.png&quot;</span><span class="tok-p">,</span><span class="tok-n">out</span><span class="tok-p">);</span>
+        <span class="tok-n">imwrite</span><span class="tok-p">(</span><span class="tok-s">&quot;entrada.png&quot;</span><span class="tok-p">,</span><span class="tok-n">image</span><span class="tok-p">);</span>
+      <span class="tok-p">}</span>
     <span class="tok-p">}</span>
   <span class="tok-p">}</span>
 
@@ -756,15 +767,82 @@ Para imagens em grayscale (P/B) só possuímos a componente de intensidade, e de
 </table>
 </div>
 <div class="paragraph">
-<p>Após termos convertido a imagem, utilizando a função <code>cvtColor(entrada,saida,parâmetro)</code>, cuja documentação está disponível <a href="http://docs.opencv.org/2.4/modules/imgproc/doc/miscellaneous_transformations.html#void%20cvtColor(InputArray%20src,%20OutputArray%20dst,%20int%20code,%20int%20dstCn)">aqui</a>, separamos as componentes de cor HSV utilizando a função <code>split(entrada,vetor_de_componentes)</code>, que divide os canais em 3 elementos do vetor de matrizes <code>channels[]</code>. Em seguida, equalizamos o histograma das intensidades (que é o terceiro canal do HSV) utilizando a função equalizeHist(entrada,saida), cuja documentação também pode ser encontrada no <a href="http://docs.opencv.org/2.4/modules/imgproc/doc/histograms.html?highlight=equalizehist">site</a> do OpenCV.</p>
+<p>Após termos convertido a imagem, utilizando a função <code>cvtColor(entrada,saida,parâmetro)</code>, cuja documentação está disponível <a href="http://docs.opencv.org/2.4/modules/imgproc/doc/miscellaneous_transformations.html#void%20cvtColor(InputArray%20src,%20OutputArray%20dst,%20int%20code,%20int%20dstCn)">aqui</a>, separamos as componentes de cor HSV utilizando a função <code>split(entrada,vetor_de_componentes)</code>, que divide os canais em 3 elementos do vetor de matrizes <code>channels[]</code>. Em seguida, equalizamos o histograma das intensidades (que é o terceiro canal do HSV - <code>channels[2]</code>) utilizando a função equalizeHist(entrada,saida), cuja documentação também pode ser encontrada no <a href="http://docs.opencv.org/2.4/modules/imgproc/doc/histograms.html?highlight=equalizehist">site</a> do OpenCV.</p>
 </div>
+<div class="paragraph">
+<p>A equalização de histogramas segue o processo descrito acima, e como já temos uma função pronta do OpenCV decidimos por não implementá-la. O OpenCV possui uma base de usuários muito forte e os algoritmos são otimizados. Implementar a função seria somente um meio de expansão do aprendizado.</p>
+</div>
+<div class="paragraph">
+<p>Após equalizado, juntamos novamente os canais da matriz utilizando a função <code>merge(entrada,saida)</code>. A matriz de saída <code>out</code> é então convertida novamente para RGB (para correta exibição) e em seguida a saída é mostrada através da função <code>imshow()</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-n">namedWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;source&quot;</span><span class="tok-p">);</span>
+<span class="tok-n">namedWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;output&quot;</span><span class="tok-p">);</span>
+<span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;souce&quot;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">);</span>
+<span class="tok-n">imshow</span><span class="tok-p">(</span><span class="tok-s">&quot;output&quot;</span><span class="tok-p">,</span><span class="tok-n">out</span><span class="tok-p">);</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_saída_do_programa">4. Saída do Programa</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Utilizamos a função <code>waitKey()</code>, que nos retorna o valor da tabela ascii que foi pressionada no teclado. O valor correspondente à tecla p é 112, conforme a <a href="http://www.elcodigoascii.com.ar/codigo-americano-estandar-intercambio-informacion/codigo-ascii.png">tabela ascii</a>. Caso o usuário pressione a tecla "p", é salvo um print da câmera, utilizando a função <code>imwrite()</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-kt">char</span> <span class="tok-n">key</span><span class="tok-p">;</span>
+<span class="tok-p">.</span>
+<span class="tok-p">.</span>
+<span class="tok-p">.</span>
+<span class="tok-n">key</span> <span class="tok-o">=</span> <span class="tok-n">waitKey</span><span class="tok-p">(</span><span class="tok-mi">30</span><span class="tok-p">);</span>
+	<span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">key</span><span class="tok-o">==</span><span class="tok-mi">27</span><span class="tok-p">)</span> <span class="tok-k">break</span><span class="tok-p">;</span>
+	<span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">key</span><span class="tok-o">==</span><span class="tok-mi">112</span><span class="tok-p">){</span>
+    	<span class="tok-n">imwrite</span><span class="tok-p">(</span><span class="tok-s">&quot;saida.png&quot;</span><span class="tok-p">,</span><span class="tok-n">out</span><span class="tok-p">);</span>
+    	<span class="tok-n">imwrite</span><span class="tok-p">(</span><span class="tok-s">&quot;entrada.png&quot;</span><span class="tok-p">,</span><span class="tok-n">image</span><span class="tok-p">);</span>
+    <span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Testamos a saída do programa utilizando a webcam do computador em que foi rodado o programa, utilizando uma imagem colorida, e com uma imagem retirada da internet. As duas imagens de entrada e as duas de saída são mostradas a seguir.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="entrada.png" alt="entrada">
+</div>
+<div class="title">Figura 2. Utilizando a Câmera do Notebook</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="saida.png" alt="saida">
+</div>
+<div class="title">Figura 3. Saída do Programa</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Unequalized_Hawkes_Bay_NZ.jpg" alt="Unequalized Hawkes Bay NZ">
+</div>
+<div class="title">Figura 4. Imagem Retirada da Internet</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="output.png" alt="output">
+</div>
+<div class="title">Figura 5. Imagem com Contraste Visivelmente Melhorado</div>
+</div>
+<div class="paragraph">
+<p>É visível a melhoria do contraste na segunda imagem, mas não tanto na primeira, devido à condições de câmera e iluminação.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-15 16:10:19 BRT
+Last updated 2016-09-15 18:49:30 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
