@@ -499,7 +499,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_o_código">3. O Código</a></li>
 <li><a href="#_explicando_o_funcionamento_do_código">4. Explicando o Funcionamento do Código</a>
 <ul class="sectlevel2">
-<li><a href="#_pedindo_ao_usuário_os_pontos">4.1. Pedindo ao Usuário os Pontos ==</a></li>
+<li><a href="#_pedindo_ao_usuário_os_pontos">4.1. Pedindo ao Usuário os Pontos</a></li>
 <li><a href="#_efetuando_a_negativação_da_imagem">4.2. Efetuando a Negativação da Imagem</a></li>
 <li><a href="#_execução_e_saída">4.3. Execução e Saída</a></li>
 </ul>
@@ -606,6 +606,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span class="tok-p">}</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p><a href="negative.cpp">Download</a></p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -615,7 +618,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Aqui é importante lembrarmos que grande parte das funções aqui utilizadas foram apresentadas e explicadas no <a href="https://melosgabriel.github.io/pdi/1.Contando-Bolhas/">Primeiro Projeto</a>. Iremos detalhar somente aqueles que forem cuja utilização é novidade.</p>
 </div>
 <div class="sect2">
-<h3 id="_pedindo_ao_usuário_os_pontos">4.1. Pedindo ao Usuário os Pontos ==</h3>
+<h3 id="_pedindo_ao_usuário_os_pontos">4.1. Pedindo ao Usuário os Pontos</h3>
 <div class="paragraph">
 <p>O código tem a função de pedir ao usuário pontos de início e fim, para caso não se deseje negativar a imagem completa mas somente uma parte dela. Como esses pontos serão necessários adiante, fazemos testes para que eles sejam colocados em ordem crescente: \$x2&gt;=x1\$ e \$y2&gt;=y1\$, ou, na linguagem do programa, menorx&lt;maiorx e menory&lt;maiory.. O programa também mostra a dimensão da imagem, para que sirva de referência para o usuário, utilizando os parâmetros <code>cv::Mat.rows</code> e <code>cv::Mat.cols</code>, da classe <code>Mat</code>, para linhas e colunas, respectivamente.</p>
 </div>
@@ -734,7 +737,7 @@ A imagem foi gravada utilizando a função <code>Mat::imwrite(string nome, Mat i
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-08-29 15:53:12 BRT
+Last updated 2016-09-16 16:21:05 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">

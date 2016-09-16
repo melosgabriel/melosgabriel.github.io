@@ -500,7 +500,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_o_algoritmo_seedfill">2.1. O Algoritmo SeedFill</a></li>
 <li><a href="#_o_que_o_código_está_fazendo">2.2. O que o código está fazendo?</a></li>
 <li><a href="#_como_o_código_está_abrindo_a_imagem">2.3. Como o Código está abrindo a imagem?</a></li>
-<li><a href="#_qual_o_retorno_da_função">2.4. Qual o retorno da função?</a></li>
+<li><a href="#_contando_n_buracos">2.4. Contando n buracos</a></li>
+<li><a href="#_qual_o_retorno_da_função">2.5. Qual o retorno da função?</a></li>
 </ul>
 </li>
 </ul>
@@ -637,7 +638,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p>Após observarmos o código, temos que explicar alguns pontos importantes:</p>
+<p>Após observarmos o <a href="first.cpp">código</a>, temos que explicar alguns pontos importantes:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -906,7 +907,7 @@ Acessamos o valor de um ponto de uma imagem com a função <code>at()</code>, qu
 <p>Começaremos realizando um <em>seedFill</em> no fundo da imagem, com o valor de 254. Não rotulamos com 255 pois não conseguiríamos distinguir das bolhas. Desse modo distinguiremos o fundo do restante dos buracos das bolhas. Depois procuraremos bolhas e as rotularemos como 1. Não podemos rotular como 0 pois seria impossível distinguir dos buracos. O rótulo das bolhas é igual ao número de buracos que ela contém+1.</p>
 </div>
 <div class="paragraph">
-<p>\$nBuracos(i) = Rotulo(i) - 1\$</p>
+<p>\$\text{nBuracos(i)} = \text{Rotulo(i)} - 1\$</p>
 </div>
 <div class="paragraph">
 <p>Onde o índice <em>i</em> representa o número da bolha. O próximo loop procurará por pixels de valor 0, ou seja, buracos. Cada vez que ele acha um buraco, ele o preenche com o valor do fundo (254) e preenche a bolha com o rótulo_da_bolha+1 (mesmo que rotulo_da_bolha++).</p>
@@ -955,9 +956,18 @@ Acessamos o valor de um ponto de uma imagem com a função <code>at()</code>, qu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_qual_o_retorno_da_função">2.4. Qual o retorno da função?</h3>
+<h3 id="_contando_n_buracos">2.4. Contando n buracos</h3>
 <div class="paragraph">
-<p>A figura original é mostrada à esquerda, juntamente com a saída do programa, ao lado esquerdo.</p>
+<p>O código prevê bolhas com até 3 buracos, mas como podemos fazer para que sejam previstos mais buracos? Basta alterarmos a dimensão do vetor <code>nBubbles[]</code> para a quantidade que desejarmos. Isso pode ser pedido ao usuário ou não.</p>
+</div>
+<div class="paragraph">
+<p>Caso tenhamos uma quantidade bolhas maior que 252 (não é 255 devido aos rótulos que utilizamos no código) podemos criar uma escala de falsos tons de cinza, utilizando RGB e aumentarmos a quantidade possível de buracos (aumentando o tamanho do rótulo da bolha).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_qual_o_retorno_da_função">2.5. Qual o retorno da função?</h3>
+<div class="paragraph">
+<p>A figura original é mostrada abaixo, juntamente com a saída do programa, logo em seguida.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1002,7 +1012,7 @@ A imagem utilizada não é a mesma do <a href="http://agostinhobritojr.github.io
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-08-21 01:40:40 BRT
+Last updated 2016-09-16 15:50:26 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
