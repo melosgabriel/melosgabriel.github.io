@@ -15,9 +15,10 @@ int main(int argc, char** argv){
   const float *histrange = { range };
   bool uniform = true;
   bool acummulate = false;
-  Mat diff; double D;
-
+  double D;
+  int counter(0);
   cap.open(0);
+  char key;
 
   if(!cap.isOpened()){
     cout << "cameras indisponiveis";
@@ -29,8 +30,6 @@ int main(int argc, char** argv){
 
   cout << "largura = " << width << endl;
   cout << "altura  = " << height << endl;
-
-  int histw = nbins, histh = nbins/2;
   
   cap >> image;
   split (image, planes);
@@ -44,14 +43,20 @@ int main(int argc, char** argv){
     
     if(D>5000){
     	calcHist(&planes[0], 1, 0, Mat(), histR_antigo, 1, &nbins, &histrange, uniform, acummulate);
-    	//histR_antigo = histR_novo;
     	cout<<"ALARME ATIVADO\n";
+    }
+    counter++;
+    if(counter>18000){
+    	calcHist(&planes[0], 1, 0, Mat(), histR_antigo, 1, &nbins, &histrange, uniform, acummulate);
     }
 
     //cout<<D<<endl;
     
     imshow("image", image);
-    if(waitKey(30) >= 0) break;
+    key = waitKey(30);
+    if(key==105) imwrite("in.png",image);
+    else if(key==111) imwrite("out.png",image);
+    else if(key>=0) break;
   }
   return 0;
 }
