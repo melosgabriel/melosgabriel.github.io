@@ -1,5 +1,7 @@
 #!/bin/sh
 
 git add -A
-git commit -am $1
+echo "crote"
+git commit -am "$1"
+echo "bu"
 git push origin master 
