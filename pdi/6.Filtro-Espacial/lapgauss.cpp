@@ -84,8 +84,6 @@ int main(int argvc, char** argv){
   namedWindow("filtroespacial",1);
 
   mask = Mat(3, 3, CV_32F, media);
-  //scaleAdd(mask, 1/9.0, Mat::zeros(3,3,CV_32F), mask1);
-  //swap(mask, mask1);
   absolut=1; // calcs abs of the image
 
   menu();
@@ -100,13 +98,13 @@ int main(int argvc, char** argv){
       frameFiltered=abs(frameFiltered);
     }
     if(lg){
-      //mask = Mat(9,9,CV_32F,lapgauss1);
       filter2D(frame32f,frameFiltered,frame32f.depth(),mask,Point(2,2),0);
       if(addLG2) frameFiltered = frameFiltered + frame32f;
     }
     if(lp){
       mask = Mat(3, 3, CV_32F, gauss);
       scaleAdd(mask, 1/16.0, Mat::zeros(3,3,CV_32F), mask1);
+      mask = mask1;
       filter2D(frame32f, frameFiltered, frame32f.depth(), mask, Point(1,1), 0);
       mask = Mat(3, 3, CV_32F, laplacian);
       filter2D(frameFiltered, frameFiltered, frame32f.depth(), mask, Point(1,1), 0);
