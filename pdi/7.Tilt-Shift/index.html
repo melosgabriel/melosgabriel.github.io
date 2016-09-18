@@ -501,11 +501,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_criando_trackbars">3.1. Criando Trackbars</a></li>
 <li><a href="#_borrando_a_imagem">3.2. Borrando a Imagem</a></li>
 <li><a href="#_aplicando_o_ponderamento_às_imagens">3.3. Aplicando o Ponderamento às Imagens</a></li>
+<li><a href="#_melhorando_as_cores">3.4. Melhorando as Cores</a></li>
+<li><a href="#_a_interface_do_usuário">3.5. A Interface do Usuário</a></li>
 </ul>
 </li>
-<li><a href="#_melhorando_as_cores">4. Melhorando as Cores</a></li>
-<li><a href="#_a_saída_do_programa">5. A Saída do Programa</a></li>
-<li><a href="#_referências">6. Referências</a></li>
+<li><a href="#_a_saída_do_programa">4. A Saída do Programa</a></li>
+<li><a href="#_referências">5. Referências</a></li>
 </ul>
 </div>
 </div>
@@ -816,11 +817,8 @@ Para utilizarmos a função <code>tanh()</code>, ou seja, a tangente hiperbólic
 </table>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_melhorando_as_cores">4. Melhorando as Cores</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_melhorando_as_cores">3.4. Melhorando as Cores</h3>
 <div class="paragraph">
 <p>Podemos aumentar a saturação das cores e seu contraste para dar um efeito de "brinquedos". Brinquedos, em geral, tem cores muito saturadas. Isso pode ser feito utilizando a função "cvtColor()", modificando a componente "Saturation" da matriz (formato HSV), como mostrado a seguir:</p>
 </div>
@@ -844,9 +842,30 @@ Para utilizarmos a função <code>tanh()</code>, ou seja, a tangente hiperbólic
 <p>Essa função só é executada no início do programa e pode ser melhorada para que o ganho de saturação seja também definido pelo usuário, com uma trackbar. O algoritmo foi sugeido por um <a href="http://stackoverflow.com/questions/8535650/how-to-change-saturation-values-with-opencv">usuário do StackOverflow</a>.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_a_interface_do_usuário">3.5. A Interface do Usuário</h3>
+<div class="paragraph">
+<p>O usuário tem acesso às 3 trackbars, como definidas anteriormente, assim como é capaz de redimensionar a janela, devido à inclusão do parâmetro <code>WINDOW_NORMAL</code> na função <code>namedWindow()</code> (criação da janela).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="cpp"><span class="tok-n">namedWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;TiltShift&quot;</span><span class="tok-p">,</span><span class="tok-n">WINDOW_NORMAL</span><span class="tok-p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O redimensionamento da janela é útil quando trabalhamos com imagens muito grandes. A interface é mostrada a seguir:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="userHUB.png" alt="userHUB">
+</div>
+<div class="title">Figura 3. Interface do Usuário</div>
+</div>
+</div>
+</div>
 </div>
 <div class="sect1">
-<h2 id="_a_saída_do_programa">5. A Saída do Programa</h2>
+<h2 id="_a_saída_do_programa">4. A Saída do Programa</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Escolhemos uma imagem qualquer pesquisando-a no Google. A seguir mostramos a saída do nosso programa. O mais interessante dessa aplicação é o efeito de miniatura que a imagem ganha.</p>
@@ -855,30 +874,30 @@ Para utilizarmos a função <code>tanh()</code>, ou seja, a tangente hiperbólic
 <div class="content">
 <img src="airport-01.jpg" alt="Aeroporto" width="630" height="268">
 </div>
-<div class="title">Figura 3. Imagem Original</div>
+<div class="title">Figura 4. Imagem Original</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="airport-03.jpg" alt="Aeroporto" width="630" height="268">
 </div>
-<div class="title">Figura 4. Efeito Til-Shift Aplicado</div>
+<div class="title">Figura 5. Efeito Til-Shift Aplicado</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="Times-Square-NY.png" alt="Times Square" width="404" height="287">
 </div>
-<div class="title">Figura 5. Imagem Original</div>
+<div class="title">Figura 6. Imagem Original</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="TiltShift_screenshot_18.09.2016.png" alt="Times Square" width="404" height="287">
 </div>
-<div class="title">Figura 6. Efeito Tilt-Shift</div>
+<div class="title">Figura 7. Efeito Tilt-Shift</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_referências">6. Referências</h2>
+<h2 id="_referências">5. Referências</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Tomamos como base, para a execução do nosso programa, a listagem feita pelo professor Agostinho, disponível em seu GitHub:</p>
@@ -895,7 +914,7 @@ Para utilizarmos a função <code>tanh()</code>, ou seja, a tangente hiperbólic
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-18 17:39:52 BRT
+Last updated 2016-09-18 17:51:40 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
