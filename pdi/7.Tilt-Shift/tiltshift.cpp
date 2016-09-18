@@ -23,7 +23,7 @@ Mat im,aux,result;
 
 char TrackbarName[50];
 
-float alpha(double x,double l1,double l2,double d1){
+double alpha(double x,double l1,double l2,double d1){
 	float retorno;
 	float k11 = (x-l1)/d1;
 	float k22 = (x-l2)/d1;
