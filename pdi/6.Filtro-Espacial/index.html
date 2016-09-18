@@ -417,6 +417,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <style>
 .listingblock .pygments .hll { background-color: #ffffcc }
 .listingblock .pygments  { background: #f8f8f8; }
@@ -634,7 +635,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                     <span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-mi">0</span><span class="tok-p">,</span><span class="tok-mi">0</span><span class="tok-p">};</span>
 
   <span class="tok-n">Mat</span> <span class="tok-n">cap</span><span class="tok-p">,</span> <span class="tok-n">frame</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">;</span>
-  <span class="tok-n">Mat</span> <span class="tok-n">mask</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-n">CV_32F</span><span class="tok-p">),</span> <span class="tok-n">mask1</span><span class="tok-p">,</span> <span class="tok-n">mask2</span><span class="tok-p">;</span>
+  <span class="tok-n">Mat</span> <span class="tok-n">mask</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-n">CV_32F</span><span class="tok-p">),</span> <span class="tok-n">mask1</span><span class="tok-p">;</span>
   <span class="tok-n">Mat</span> <span class="tok-n">result</span><span class="tok-p">,</span> <span class="tok-n">result1</span><span class="tok-p">;</span>
   <span class="tok-kt">double</span> <span class="tok-n">width</span><span class="tok-p">,</span> <span class="tok-n">height</span><span class="tok-p">;</span>
   <span class="tok-kt">int</span> <span class="tok-n">absolut</span><span class="tok-p">;</span>
@@ -652,8 +653,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
   <span class="tok-n">namedWindow</span><span class="tok-p">(</span><span class="tok-s">&quot;filtroespacial&quot;</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">);</span>
 
   <span class="tok-n">mask</span> <span class="tok-o">=</span> <span class="tok-n">Mat</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-n">CV_32F</span><span class="tok-p">,</span> <span class="tok-n">media</span><span class="tok-p">);</span>
-  <span class="tok-c1">//scaleAdd(mask, 1/9.0, Mat::zeros(3,3,CV_32F), mask1);</span>
-  <span class="tok-c1">//swap(mask, mask1);</span>
   <span class="tok-n">absolut</span><span class="tok-o">=</span><span class="tok-mi">1</span><span class="tok-p">;</span> <span class="tok-c1">// calcs abs of the image</span>
 
   <span class="tok-n">menu</span><span class="tok-p">();</span>
@@ -668,13 +667,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
       <span class="tok-n">frameFiltered</span><span class="tok-o">=</span><span class="tok-n">abs</span><span class="tok-p">(</span><span class="tok-n">frameFiltered</span><span class="tok-p">);</span>
     <span class="tok-p">}</span>
     <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">lg</span><span class="tok-p">){</span>
-      <span class="tok-c1">//mask = Mat(9,9,CV_32F,lapgauss1);</span>
       <span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frame32f</span><span class="tok-p">,</span><span class="tok-n">frameFiltered</span><span class="tok-p">,</span><span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span><span class="tok-n">mask</span><span class="tok-p">,</span><span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span><span class="tok-mi">2</span><span class="tok-p">),</span><span class="tok-mi">0</span><span class="tok-p">);</span>
       <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">addLG2</span><span class="tok-p">)</span> <span class="tok-n">frameFiltered</span> <span class="tok-o">=</span> <span class="tok-n">frameFiltered</span> <span class="tok-o">+</span> <span class="tok-n">frame32f</span><span class="tok-p">;</span>
     <span class="tok-p">}</span>
     <span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">lp</span><span class="tok-p">){</span>
       <span class="tok-n">mask</span> <span class="tok-o">=</span> <span class="tok-n">Mat</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-n">CV_32F</span><span class="tok-p">,</span> <span class="tok-n">gauss</span><span class="tok-p">);</span>
       <span class="tok-n">scaleAdd</span><span class="tok-p">(</span><span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-o">/</span><span class="tok-mf">16.0</span><span class="tok-p">,</span> <span class="tok-n">Mat</span><span class="tok-o">::</span><span class="tok-n">zeros</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-n">CV_32F</span><span class="tok-p">),</span> <span class="tok-n">mask1</span><span class="tok-p">);</span>
+      <span class="tok-n">mask</span> <span class="tok-o">=</span> <span class="tok-n">mask1</span><span class="tok-p">;</span>
       <span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
       <span class="tok-n">mask</span> <span class="tok-o">=</span> <span class="tok-n">Mat</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-n">CV_32F</span><span class="tok-p">,</span> <span class="tok-n">laplacian</span><span class="tok-p">);</span>
       <span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
@@ -762,6 +761,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="pygments highlight"><code data-lang="cpp"><span class="tok-k">if</span><span class="tok-p">(</span><span class="tok-n">lp</span><span class="tok-p">){</span>
   <span class="tok-n">mask</span> <span class="tok-o">=</span> <span class="tok-n">Mat</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-n">CV_32F</span><span class="tok-p">,</span> <span class="tok-n">gauss</span><span class="tok-p">);</span>
   <span class="tok-n">scaleAdd</span><span class="tok-p">(</span><span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-o">/</span><span class="tok-mf">16.0</span><span class="tok-p">,</span> <span class="tok-n">Mat</span><span class="tok-o">::</span><span class="tok-n">zeros</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-n">CV_32F</span><span class="tok-p">),</span> <span class="tok-n">mask1</span><span class="tok-p">);</span>
+  <span class="tok-n">mask</span> <span class="tok-o">=</span> <span class="tok-n">mask1</span><span class="tok-p">;</span>
   <span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frame32f</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
   <span class="tok-n">mask</span> <span class="tok-o">=</span> <span class="tok-n">Mat</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-n">CV_32F</span><span class="tok-p">,</span> <span class="tok-n">laplacian</span><span class="tok-p">);</span>
   <span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frameFiltered</span><span class="tok-p">,</span> <span class="tok-n">frame32f</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
@@ -887,7 +887,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-17 18:43:13 BRT
+Last updated 2016-09-18 18:49:48 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
