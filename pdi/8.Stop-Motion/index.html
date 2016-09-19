@@ -783,6 +783,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Caso o tempo tenha que se manter constate, escrevemos a mesma matriz por diversas vezes, até que o contador atinja o valor da taxa e a matriz de saída deva ser atualizada <code>if(tempo) output_cap.write(result);</code>.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Precisamos converter de volta a matriz <code>result</code> para <code>unsigned char</code> para correta exibição. Convertemos as matrizes <code>im</code> e <code>aux</code> para float (CV_32FC3) e devemos retornar para o tipo inicial (CV_8UC3).
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -903,7 +915,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="videoblock">
 <div class="title">Stop Motion + TiltShift do video The City</div>
 <div class="content">
-<video src="output.mp4" controls>
+<video src="city_output.mp4" width="640" height="360" autoplay controls loop>
 Your browser does not support the video tag.
 </video>
 </div>
@@ -911,7 +923,7 @@ Your browser does not support the video tag.
 <div class="videoblock">
 <div class="title">Stop Motion + TiltShift (acelerado) do video The City</div>
 <div class="content">
-<video src="city_output2.avi" width="640" height="360" autoplay controls loop>
+<video src="city_output2.mp4" width="640" height="360" autoplay controls loop>
 Your browser does not support the video tag.
 </video>
 </div>
@@ -950,7 +962,7 @@ Your browser does not support the video tag.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-19 03:06:40 BRT
+Last updated 2016-09-19 03:18:38 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">
