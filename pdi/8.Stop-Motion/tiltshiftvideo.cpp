@@ -64,7 +64,7 @@ Mat mask = Mat(3,3,CV_32F,media),mask1;
      
 int main(int argvc, char** argv){
   	VideoCapture video(argv[1]);      //Abrindo Arquivo de entrada
-  	VideoWriter output_cap("output.avi", video.get(CV_CAP_PROP_FOURCC), video.get(CV_CAP_PROP_FPS),
+  	VideoWriter output_cap("output.mp4", video.get(CV_CAP_PROP_FOURCC), video.get(CV_CAP_PROP_FPS),
                			   cv::Size(video.get(CV_CAP_PROP_FRAME_WIDTH), video.get(CV_CAP_PROP_FRAME_HEIGHT))); //Arquivo de saída
 
   	if(!video.isOpened()) return -1;            //Teste para validar entradas e saídas
@@ -122,6 +122,7 @@ int main(int argvc, char** argv){
 	  			filter2D(aux, aux, im.depth(), mask, Point(1,1), 0);
 	  		}
 	  		juntar(im,aux);
+	  		result.convertTo(result, CV_8UC3);
 	  		output_cap.write(result);
 	  	}
 	  	if(tempo) output_cap.write(result);
