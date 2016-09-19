@@ -645,7 +645,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
   	<span class="tok-n">scaleAdd</span><span class="tok-p">(</span><span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-o">/</span><span class="tok-mf">9.0</span><span class="tok-p">,</span> <span class="tok-n">Mat</span><span class="tok-o">::</span><span class="tok-n">zeros</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-mi">3</span><span class="tok-p">,</span><span class="tok-n">CV_32F</span><span class="tok-p">),</span> <span class="tok-n">mask1</span><span class="tok-p">);</span>
 	<span class="tok-n">mask</span> <span class="tok-o">=</span> <span class="tok-n">mask1</span><span class="tok-p">;</span>
 
-  	<span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-mi">30</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
+  	<span class="tok-k">for</span><span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">i</span><span class="tok-o">=</span><span class="tok-mi">0</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">&lt;</span><span class="tok-mi">25</span><span class="tok-p">;</span><span class="tok-n">i</span><span class="tok-o">++</span><span class="tok-p">){</span>
   		<span class="tok-n">filter2D</span><span class="tok-p">(</span><span class="tok-n">aux</span><span class="tok-p">,</span> <span class="tok-n">aux</span><span class="tok-p">,</span> <span class="tok-n">im</span><span class="tok-p">.</span><span class="tok-n">depth</span><span class="tok-p">(),</span> <span class="tok-n">mask</span><span class="tok-p">,</span> <span class="tok-n">Point</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span><span class="tok-mi">1</span><span class="tok-p">),</span> <span class="tok-mi">0</span><span class="tok-p">);</span>
   	<span class="tok-p">}</span>
   	<span class="tok-n">L1_slider_max</span> <span class="tok-o">=</span> <span class="tok-n">im</span><span class="tok-p">.</span><span class="tok-n">rows</span><span class="tok-p">;</span>
@@ -821,7 +821,7 @@ Para utilizarmos a função <code>tanh()</code>, ou seja, a tangente hiperbólic
 <div class="sect2">
 <h3 id="_melhorando_as_cores">3.4. Melhorando as Cores</h3>
 <div class="paragraph">
-<p>Podemos aumentar a saturação das cores e seu contraste para dar um efeito de "brinquedos". Brinquedos, em geral, tem cores muito saturadas. Isso pode ser feito utilizando a função "cvtColor()", modificando a componente "Saturation" da matriz (formato HSV), como mostrado a seguir:</p>
+<p>Podemos aumentar a saturação das cores e seu contraste para dar um efeito de miniaturas. Brinquedos, em geral, tem cores muito saturadas. Isso pode ser feito utilizando a função "cvtColor()", modificando a componente "Saturation" da matriz (formato HSV), como mostrado a seguir:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -879,7 +879,7 @@ Para utilizarmos a função <code>tanh()</code>, ou seja, a tangente hiperbólic
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="airport-02.jpg" alt="Aeroporto" width="1253" height="535">
+<img src="airport-03.jpg" alt="Aeroporto" width="1253" height="535">
 </div>
 <div class="title">Figura 5. Efeito Til-Shift Aplicado</div>
 </div>
@@ -894,6 +894,18 @@ Para utilizarmos a função <code>tanh()</code>, ou seja, a tangente hiperbólic
 <img src="TiltShift_screenshot_18.09.2016.png" alt="Times Square" width="404" height="287">
 </div>
 <div class="title">Figura 7. Efeito Tilt-Shift</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="20160916_110910.jpg" alt="Carrefour_view" width="951" height="535">
+</div>
+<div class="title">Figura 8. Imagem Original</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="20160916_1109102.jpg" alt="Carrefour_view" width="951" height="535">
+</div>
+<div class="title">Figura 9. Efeito Tilt-Shift</div>
 </div>
 </div>
 </div>
@@ -915,7 +927,7 @@ Para utilizarmos a função <code>tanh()</code>, ou seja, a tangente hiperbólic
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-18 18:47:52 BRT
+Last updated 2016-09-19 02:27:08 BRT
 </div>
 </div>
 <script type="text/x-mathjax-config">

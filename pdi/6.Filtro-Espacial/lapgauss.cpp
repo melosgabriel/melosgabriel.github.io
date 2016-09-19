@@ -66,7 +66,7 @@ int main(int argvc, char** argv){
                     0,0,0};
 
   Mat cap, frame, frame32f, frameFiltered;
-  Mat mask(3,3,CV_32F), mask1, mask2;
+  Mat mask(3,3,CV_32F), mask1;
   Mat result, result1;
   double width, height;
   int absolut;
